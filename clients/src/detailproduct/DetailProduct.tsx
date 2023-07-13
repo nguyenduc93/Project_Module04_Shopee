@@ -55,7 +55,7 @@ const DetailProduct = () => {
   const getStores = async () => {
     try {
       let data = await axios.get(
-        `http://localhost:5000/api/v1/stores/${flagUser.userId}`
+        `http://localhost:5000/api/v1/stores/user/${id}`
       );
       setStores(data.data.message[0]);
     } catch (error) {
@@ -189,7 +189,7 @@ const DetailProduct = () => {
   // Hàm nếu là sản phẩm của shop thì không đc mua
   const handleAddStore = () => {
     notification.error({
-      message: "Không được buff đơn!",
+      message: "Không được mua sản phẩm của mình!",
       placement: "top",
       duration: 2,
     });
@@ -211,6 +211,7 @@ const DetailProduct = () => {
       currency: "VND",
     });
   };
+
   return (
     <div>
       <Navbar />

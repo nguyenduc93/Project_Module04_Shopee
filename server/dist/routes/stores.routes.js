@@ -35,4 +35,18 @@ router.post("/", async (req, res) => {
         console.log(error);
     }
 });
+// Lấy dữ liệu bảng stores theo id products
+router.get("/user/:id", async (req, res) => {
+    const productId = req.params.id;
+    try {
+        let data = await database_1.default.execute(`SELECT stores.* FROM products JOIN stores ON stores.storeId = products.storeId WHERE productId = "${productId}"`);
+        res.status(200).json({
+            status: 200,
+            message: data[0]
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
 exports.default = router;

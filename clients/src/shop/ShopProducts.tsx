@@ -18,6 +18,7 @@ type Product = {
   categoryId: number;
   storeId: number;
   image: string;
+  statusproduct: number;
 };
 const ShopProducts = () => {
   // Modal
@@ -160,19 +161,44 @@ const ShopProducts = () => {
           <div className="order_table3">
             {products?.map((product: Product, index) => (
               <div key={index}>
-                <div className="order_table2">
-                  <div className="name_order">
-                    <div className="name_order1" style={{ paddingLeft: 20 }}>
-                      <img src={product.image} alt="" width={80} />
-                      <p>{product.productName}</p>
+                {product.statusproduct === 1 ? (
+                  <div className="order_table2">
+                    <div className="name_order">
+                      <div className="name_order1" style={{ paddingLeft: 20 }}>
+                        <img src={product.image} alt="" width={80} />
+                        <p>{product.productName}</p>
+                      </div>
+                    </div>
+                    <div className="sum_order">
+                      {formatCurrency(product.price)}
+                    </div>
+                    <div className="status_order">{product.quantity}</div>
+                    <div className="active_order" style={{ color: "#2673dd" }}>
+                      <Button type="primary" onClick={() => showModal(product)}>
+                        <CreateOutlinedIcon className="icon111" />
+                      </Button>
+                      <Button
+                        type="primary"
+                        onClick={() => handleDelete(product.productId)}
+                      >
+                        <RestoreFromTrashOutlinedIcon className="icon111" />
+                      </Button>
                     </div>
                   </div>
-                  <div className="sum_order">
-                    {formatCurrency(product.price)}
-                  </div>
-                  <div className="status_order">{product.quantity}</div>
-                  <div className="active_order" style={{ color: "#2673dd" }}>
-                    <Button type="primary" onClick={() => showModal(product)}>
+                ) : (
+                  <div className="order_table2 order_table2222">
+                    <div className="name_order">
+                      <div className="name_order1" style={{ paddingLeft: 20 }}>
+                        <img src={product.image} alt="" width={80} />
+                        <p>{product.productName}</p>
+                      </div>
+                    </div>
+                    <div className="sum_order">
+                      {formatCurrency(product.price)}
+                    </div>
+                    <div className="status_order">{product.quantity}</div>
+                    <div className="active_order" style={{ color: "#2673dd" }}>
+                      {/* <Button type="primary" onClick={() => showModal(product)}>
                       <CreateOutlinedIcon className="icon111" />
                     </Button>
                     <Button
@@ -180,9 +206,12 @@ const ShopProducts = () => {
                       onClick={() => handleDelete(product.productId)}
                     >
                       <RestoreFromTrashOutlinedIcon className="icon111" />
-                    </Button>
+                    </Button> */}
+                      Đã bị ẩn
+                    </div>
                   </div>
-                </div>
+                )}
+
                 <hr />
               </div>
             ))}

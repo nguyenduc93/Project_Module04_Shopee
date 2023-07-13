@@ -20,6 +20,7 @@ type Product = {
   categoryId: number;
   storeId: number;
   image: string;
+  quantitySold: number;
 };
 const GirlFashion = () => {
   const params = useParams();
@@ -37,9 +38,23 @@ const GirlFashion = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     handleProducts();
   }, []);
+
+  // Chuyển đổi giá từ thấp đến cao
+  const handleUp = () => {
+    const upProducts = [...products];
+    upProducts.sort((a: Product, b: Product) => a.price - b.price);
+    setProducts(upProducts);
+  };
+  // Chuyển đổi giá thừ cao xuống thấp
+  const handleDown = () => {
+    const upProducts = [...products];
+    upProducts.sort((a: Product, b: Product) => b.price - a.price);
+    setProducts(upProducts);
+  };
 
   // Hàm chuyển đổi đơn vị tiền
   const formatCurrency = (value: any) => {
@@ -329,12 +344,20 @@ const GirlFashion = () => {
                       <KeyboardArrowDownOutlinedIcon />
                       <ul className="home-filter-sort-list">
                         <li>
-                          <button className="home-filter-sort-item-link">
+                          <button
+                            className="home-filter-sort-item-link"
+                            onClick={handleUp}
+                            style={{ cursor: "pointer" }}
+                          >
                             Giá: Thấp đến cao
                           </button>
                         </li>
                         <li>
-                          <button className="home-filter-sort-item-link">
+                          <button
+                            className="home-filter-sort-item-link"
+                            style={{ cursor: "pointer" }}
+                            onClick={handleDown}
+                          >
                             Giá: Cao đến thấp
                           </button>
                         </li>
@@ -375,7 +398,7 @@ const GirlFashion = () => {
                                         </div>
                                         <div className="price__description2">
                                           {" "}
-                                          Đã bán 10k
+                                          Đã bán {product.quantitySold}
                                         </div>
                                       </div>
                                     }

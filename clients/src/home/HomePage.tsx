@@ -71,7 +71,10 @@ const HomePage = () => {
   return (
     <>
       {" "}
-      <Navbar />
+      <div className="navbar__hompage">
+        {" "}
+        <Navbar />
+      </div>
       {/* Carousel */}
       <div style={slideStyle}>
         <div style={sliderStyle}>

@@ -20,6 +20,7 @@ type Product = {
   categoryId: number;
   storeId: number;
   image: string;
+  quantitySold: number;
 };
 const Smart = () => {
   const params = useParams();
@@ -375,7 +376,7 @@ const Smart = () => {
                                         </div>
                                         <div className="price__description2">
                                           {" "}
-                                          Đã bán 10k
+                                          Đã bán {product.quantitySold}
                                         </div>
                                       </div>
                                     }
