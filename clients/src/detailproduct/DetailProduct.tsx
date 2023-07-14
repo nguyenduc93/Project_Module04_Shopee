@@ -268,7 +268,7 @@ const DetailProduct = () => {
                       <p>Chưa có đánh giá</p>
                     ) : (
                       <>
-                        <span>{averageRating}</span>
+                        <span>{Math.round(averageRating)}</span>
                         <Rate
                           allowHalf
                           value={averageRating}

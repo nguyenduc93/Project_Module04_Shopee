@@ -52,7 +52,9 @@ router.delete("/:id", async (req, res) => {
         });
     }
     catch (error) {
-        console.log(error);
+        res.json({
+            status: 500
+        });
     }
 });
 // Lấy dữ liệu của tất cả products

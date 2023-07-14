@@ -113,6 +113,15 @@ const ShopProducts = () => {
       let data = await axios.delete(
         `http://localhost:5000/api/v1/products/${id}`
       );
+
+      if (data.data.status === 500) {
+        notification.success({
+          message: "Sản phẩm đang có trong giỏ hàng không thể xóa!",
+          placement: "top",
+          duration: 2,
+        });
+        return;
+      }
       if (data.data.status === 200) {
         notification.success({
           message: "Xóa sản phẩm thành công!",

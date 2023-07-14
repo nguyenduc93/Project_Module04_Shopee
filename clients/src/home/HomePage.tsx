@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const { Meta } = Card;
-type Product = {
+interface Product {
   productId: number;
   productName: string;
   price: number;
@@ -21,7 +21,7 @@ type Product = {
   storeId: number;
   image: string;
   quantitySold: number;
-};
+}
 
 const HomePage = () => {
   const settings = {
@@ -44,6 +44,7 @@ const HomePage = () => {
     minHeight: 300,
     Position: "relative",
     cursor: "pointer",
+    marginTop: 132,
   };
 
   // Lấy dữ liệu của tất cả products
@@ -216,7 +217,7 @@ const HomePage = () => {
 
         {/* Gợi ý hôm nay */}
         <div className="sub_today">
-          <p>GỢI Ý HÔM NAY</p>
+          <div className="goiy">GỢI Ý HÔM NAY</div>
           <div className="cart_today">
             {products &&
               products.map((product: Product, index) => (

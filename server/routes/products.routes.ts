@@ -55,7 +55,9 @@ router.put("/", async(req: Request, res: Response)=>{
         message: data
       })
     } catch (error) {
-      console.log(error);     
+      res.json({
+        status: 500
+      } )
     }
   })
 

@@ -3,11 +3,12 @@ import Navbar from "../header/Navbar";
 import "./ProfileUser.css";
 import { Avatar, notification } from "antd";
 import CreateIcon from "@mui/icons-material/Create";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const ProfileUser = () => {
+  const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const flagUser = user ? JSON.parse(user) : null;
   const [fullName, setFullName] = useState(flagUser?.fullName || "");
@@ -82,6 +83,9 @@ const ProfileUser = () => {
       };
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUsers(updatedUser);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }

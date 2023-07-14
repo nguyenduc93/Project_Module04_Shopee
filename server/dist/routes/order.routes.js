@@ -50,7 +50,7 @@ JOIN (
   ) AS min_images ON images.imageId = min_images.minImageId
 ) AS first_image ON products.productId = first_image.productId
 JOIN users ON orders.userId = users.userId
-WHERE stores.storeId = ${storeId};
+WHERE stores.storeId = ${storeId} ORDER BY createdDate DESC;
      `);
         res.status(200).json({
             status: 200,
